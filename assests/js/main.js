@@ -10,6 +10,8 @@ let timeBlockArray = [
   { id: 9, info: "", startTime: 17, endTime: "6pm" },
 ]
 
+let clickSound = new Audio("https://www.fesliyanstudios.com/play-mp3/387")
+
 function amPmConverter(val) {
   if (val < 12) {
     val = val + "am"
@@ -22,30 +24,23 @@ function amPmConverter(val) {
   return val
 }
 
-
-function changeBgColorClass(startTime){
-  // let currentHour = moment().hour()
-  let currentHour = 13
+function changeBgColorClass(startTime) {
+  let currentHour = moment().hour()
 
   console.log(currentHour)
 
   if (startTime < currentHour) {
-    return 'past';
+    return "past"
   }
-  
+
   if (startTime > currentHour) {
-    return 'future';
+    return "future"
   }
 
   if (startTime === currentHour) {
-    return 'present';
+    return "present"
   }
-
 }
-
-
-
-
 
 function timeBlockGenerator() {
   let timeBlock = ""
@@ -61,16 +56,20 @@ function timeBlockGenerator() {
                       timeBlockArray[i].startTime
                     )}</div>
 
-                    <div class="info-area ${changeBgColorClass(timeBlockArray[i].startTime)}">
+                    <div class="info-area ${changeBgColorClass(
+                      timeBlockArray[i].startTime
+                    )}">
                         <textarea id="textarea${timeBlockArray[i].id}">${
       timeBlockArray[i].info
     }</textarea>
                     </div>
 
                     <div class="button-block"> 
-                        <i class="fas fa-save fa-2x floppy" onclick="saveInfo('${
-                          timeBlockArray[i].id
-                        }')"></i>
+                      <button onclick="saveInfo('${
+                        timeBlockArray[i].id
+                      }')"> 
+                        <i class="fas fa-save fa-2x floppy"></i>
+                      </button>
                     </div>
                 </div>`
   }
@@ -90,8 +89,21 @@ function currentDay() {
 }
 
 function saveInfo(id) {
+  clickSound.play()
   let val = $("#textarea" + id).val()
   modifyTimeBlockArray(id, val)
+  showStatusBar()
+}
+
+function showStatusBar() {
+  $(".status-bar").fadeIn(1000)
+  setTimeout(function(){
+    hideStatusBar()
+  }, 1000)
+}
+
+function hideStatusBar() {
+  $(".status-bar").fadeOut(1000)
 }
 
 function modifyTimeBlockArray(id, value) {
