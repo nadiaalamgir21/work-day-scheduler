@@ -1,13 +1,13 @@
 let timeBlockArray = [
-  { id: 1, info: "", startTime: 9, endTime: "10am" },
-  { id: 2, info: "", startTime: 10, endTime: "11am" },
-  { id: 3, info: "", startTime: 11, endTime: "12pm" },
-  { id: 4, info: "", startTime: 12, endTime: "1pm" },
-  { id: 5, info: "", startTime: 13, endTime: "2pm" },
-  { id: 6, info: "", startTime: 14, endTime: "3pm" },
-  { id: 7, info: "", startTime: 15, endTime: "4pm" },
-  { id: 8, info: "", startTime: 16, endTime: "5pm" },
-  { id: 9, info: "", startTime: 17, endTime: "6pm" },
+  { id: 1, info: "", startTime: 9 },
+  { id: 2, info: "", startTime: 10 },
+  { id: 3, info: "", startTime: 11 },
+  { id: 4, info: "", startTime: 12 },
+  { id: 5, info: "", startTime: 13 },
+  { id: 6, info: "", startTime: 14 },
+  { id: 7, info: "", startTime: 15 },
+  { id: 8, info: "", startTime: 16 },
+  { id: 9, info: "", startTime: 17 },
 ]
 
 let clickSound = new Audio("https://www.fesliyanstudios.com/play-mp3/387")
@@ -65,9 +65,7 @@ function timeBlockGenerator() {
                     </div>
 
                     <div class="button-block"> 
-                      <button onclick="saveInfo('${
-                        timeBlockArray[i].id
-                      }')"> 
+                      <button onclick="saveInfo('${timeBlockArray[i].id}')"> 
                         <i class="fas fa-save fa-2x floppy"></i>
                       </button>
                     </div>
@@ -97,7 +95,7 @@ function saveInfo(id) {
 
 function showStatusBar() {
   $(".status-bar").fadeIn(1000)
-  setTimeout(function(){
+  setTimeout(function () {
     hideStatusBar()
   }, 1000)
 }
