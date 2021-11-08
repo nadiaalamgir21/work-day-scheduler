@@ -1,5 +1,7 @@
 
-# Work Day Scheduler Starter Code
+# Work Day Scheduler
+
+This word day scheduler is designed to note any appoinments or work to do and save it for future reference. I used bootstrap and Jquery in addition to help optimize my code and learned a lot in the process as well. I have also made this project responsive.
 
 ## Link to application
 https://nadiaalamgir21.github.io/work-day-scheduler/
