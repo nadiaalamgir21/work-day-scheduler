@@ -55,22 +55,17 @@ textarea {
 }
 
 #currentDay {
-  width: 400px;
+  max-width: 400px;
   margin: 0 auto;
 }
 
 .time-block {
-  display: flex;
-  flex-direction: row;
-  height: 80px;
-  width: 1000px;
-  margin: 0 auto;
+  min-height: 80px;
   border-bottom: 2px solid oldlace;
 }
 
 .hour {
-  height: 100%;
-  width: 80px;
+  height: inherit;
   background-color: var(--side-color);
   color: rgb(7, 7, 7);
   text-align: center;
@@ -78,15 +73,14 @@ textarea {
 }
 
 .info-area {
-  height: 100%;
-  width: 800px;
+  height: inherit;
 }
 
 .button-block {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: inherit;
   width: 100px;
   background-color: var(--side-color);
 }
@@ -112,7 +106,32 @@ textarea {
 }
 
 .button-block > button{
+  outline: none;
   border: none;
   background: transparent;
 }
 
+
+@media screen and (max-width: 768px) {
+  .display-3{
+    font-size: 3.5rem;
+  }
+  
+  .time-block {
+    margin-bottom: 15px;
+  }
+
+  .hour{
+    padding: 20px;
+  }
+
+  .info-area{
+    width: 100%;
+    height: 150px;
+  }
+
+  .button-block{
+    width: 100%;
+    padding: 15px;
+  }
+}

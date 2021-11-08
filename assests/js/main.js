@@ -51,28 +51,28 @@ function timeBlockGenerator() {
 
   for (let i = 0; i < timeBlockArray.length; i++) {
     timeBlock += `
-                <div class="time-block">
-                    <div class="hour"> ${amPmConverter(
+                <div class="row time-block">
+
+                    <div class="col-md-1 hour"> ${amPmConverter(
                       timeBlockArray[i].startTime
                     )}</div>
 
-                    <div class="info-area ${changeBgColorClass(
+                    <div class="col-md-10 info-area ${changeBgColorClass(
                       timeBlockArray[i].startTime
                     )}">
-                        <textarea id="textarea${timeBlockArray[i].id}">${
-      timeBlockArray[i].info
-    }</textarea>
+                      <textarea id="textarea${timeBlockArray[i].id}">${timeBlockArray[i].info}</textarea>
                     </div>
 
-                    <div class="button-block"> 
+                    <div class="col-md-1 button-block"> 
                       <button onclick="saveInfo('${timeBlockArray[i].id}')"> 
                         <i class="fas fa-save fa-2x floppy"></i>
                       </button>
                     </div>
+
                 </div>`
   }
 
-  $(".container").html(timeBlock)
+  $(".my-content").html(timeBlock)
 }
 
 function init() {
