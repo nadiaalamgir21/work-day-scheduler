@@ -1,3 +1,4 @@
+// This is an array of timeslot object from 9am to 5pm.
 let timeBlockArray = [
   { id: 1, info: "", startTime: 9 },
   { id: 2, info: "", startTime: 10 },
@@ -10,8 +11,10 @@ let timeBlockArray = [
   { id: 9, info: "", startTime: 17 },
 ]
 
+// click sound for save button
 let clickSound = new Audio("https://www.fesliyanstudios.com/play-mp3/387")
 
+// This is a function for the convertion of time in each loop to appropriate am and pm
 function amPmConverter(val) {
   if (val < 12) {
     val = val + "am"
@@ -24,6 +27,7 @@ function amPmConverter(val) {
   return val
 }
 
+// This function is to change the background color of the time blocks according to the current time if the time blocks are past the current time they will get the past class for gray background and for the time blocks that are in future they will get the future class and the current time will get the present class
 function changeBgColorClass(startTime) {
   let currentHour = moment().hour()
 
@@ -42,9 +46,10 @@ function changeBgColorClass(startTime) {
   }
 }
 
+//this function loops through each item in the timeBlockArray and generates the time block according to the corresponding logic provided in above functions
 function timeBlockGenerator() {
   let timeBlock = ""
-
+  //gets the stored timeBlockArray from the localstorage if it exists
   if (localStorage.getItem("timeBlockArray") !== null) {
     timeBlockArray = JSON.parse(localStorage.getItem("timeBlockArray")) // convert timeBlockArray string into object again
   }
@@ -75,17 +80,20 @@ function timeBlockGenerator() {
   $(".my-content").html(timeBlock)
 }
 
+// runs when document is ready
 function init() {
   timeBlockGenerator()
   currentDay()
 }
-
+// jquery method which runs when it detects the document is ready to be used
 $(document).ready(init)
 
+//prints the current day with time below the heading work day scheduler
 function currentDay() {
   $("#currentDay").html(moment().format("dddd, MMMM Do, h:mm a"))
 }
 
+//plays the click sound when save button is clicked and extracts the value from the textarea element of the that time-block
 function saveInfo(id) {
   clickSound.play()
   let val = $("#textarea" + id).val()
@@ -93,6 +101,7 @@ function saveInfo(id) {
   showStatusBar()
 }
 
+//shows the saved status for 1 second and then hides it
 function showStatusBar() {
   $(".status-bar").fadeIn(1000)
   setTimeout(function () {
@@ -100,10 +109,12 @@ function showStatusBar() {
   }, 1000)
 }
 
+// hides the status element with fade animation
 function hideStatusBar() {
   $(".status-bar").fadeOut(1000)
 }
 
+//replaces the value in timeBlockArray of the current saved time block by searching that element with help of id
 function modifyTimeBlockArray(id, value) {
   id = parseInt(id)
 
@@ -113,6 +124,5 @@ function modifyTimeBlockArray(id, value) {
     }
   }
 
-  console.log("timeBLockAray", timeBlockArray)
   localStorage.setItem("timeBlockArray", JSON.stringify(timeBlockArray))
 }
